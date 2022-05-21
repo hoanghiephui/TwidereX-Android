@@ -24,10 +24,12 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.twidere.twiderex.defaultLoadCount
 import com.twidere.twiderex.extensions.asStateIn
 import com.twidere.twiderex.model.MicroBlogKey
+import com.twidere.twiderex.model.ui.UiStatus
 import com.twidere.twiderex.paging.mediator.paging.PagingWithGapMediator
 import com.twidere.twiderex.paging.mediator.paging.pager
 import com.twidere.twiderex.paging.mediator.paging.toUi
@@ -36,6 +38,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 import moe.tlaster.precompose.viewmodel.ViewModel
@@ -48,9 +51,14 @@ abstract class TimelineViewModel(
     abstract val savedStateKey: Flow<String?>
 
     @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
-    val source by lazy {
+    val source: Flow<PagingData<UiStatus>> by lazy {
         pagingMediator.mapNotNull { it }.flatMapLatest {
-            it.pager().toUi()
+            it.pager(
+                config = PagingConfig(
+                    pageSize = timelinePageSize,
+                    initialLoadSize = timelineInitialLoadSize
+                )
+            ).toUi()
         }.cachedIn(viewModelScope)
     }
 
@@ -60,8 +68,9 @@ abstract class TimelineViewModel(
             .asStateIn(viewModelScope, emptyList())
     }
 
-    suspend fun provideScrollState(): TimelineScrollState {
-        return savedStateKey.firstOrNull()?.let {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    suspend fun provideScrollState(): Flow<TimelineScrollState?> {
+        return savedStateKey.mapLatest {
             val firstVisibleItemIndexKey = intPreferencesKey("${it}_firstVisibleItemIndex")
             val firstVisibleItemScrollOffsetKey =
                 intPreferencesKey("${it}_firstVisibleItemScrollOffset")
@@ -73,7 +82,7 @@ abstract class TimelineViewModel(
                     firstVisibleItemScrollOffset = firstVisibleItemScrollOffset,
                 )
             }
-        } ?: TimelineScrollState.Zero
+        }
     }
 
     @OptIn(androidx.paging.ExperimentalPagingApi::class)
@@ -82,7 +91,7 @@ abstract class TimelineViewModel(
         sinceStatueKey: MicroBlogKey,
     ) = viewModelScope.launch {
         pagingMediator.firstOrNull()?.loadBetween(
-            defaultLoadCount,
+            pageSize = timelinePageSize,
             maxStatusKey = maxStatusKey,
             sinceStatusKey = sinceStatueKey
         )
@@ -98,6 +107,11 @@ abstract class TimelineViewModel(
                 preferences[firstVisibleItemScrollOffsetKey] = offset.firstVisibleItemScrollOffset
             }
         }
+    }
+
+    companion object {
+        private const val timelinePageSize = 20
+        private const val timelineInitialLoadSize = 40
     }
 }
 
