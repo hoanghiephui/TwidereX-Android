@@ -188,7 +188,7 @@ class TwidereXActivity : PreComposeActivity(), KoinComponent {
                 ) {
                     Router(
                         navController = navController,
-                        isDebug = moe.tlaster.kfilepicker.BuildConfig.DEBUG
+                        isDebug = false
                     )
                 }
             }
