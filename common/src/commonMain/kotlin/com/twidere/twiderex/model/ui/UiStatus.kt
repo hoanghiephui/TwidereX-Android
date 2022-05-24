@@ -22,7 +22,6 @@ package com.twidere.twiderex.model.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import com.twidere.twiderex.component.stringResource
 import com.twidere.twiderex.dataprovider.mapper.autolink
 import com.twidere.twiderex.model.MicroBlogKey
 import com.twidere.twiderex.model.enums.MastodonStatusType
@@ -98,12 +97,12 @@ data class UiStatus(
         @Composable
         fun sample() = UiStatus(
             statusId = "",
-            htmlText = autolink.autoLink(stringResource(res = com.twidere.twiderex.MR.strings.scene_settings_display_preview_thank_for_using_twidere_x)),
+            htmlText = autolink.autoLink("Multi-wallet for #Bitcoin, #Ethereum, #Binance Smart Chain and other emerging blockchains. Non-custodial storage, decentralized exchange, and extensive analytics for thousands of tokens and #NFTs \n\n\uD83D\uDC49 Download it here: https://bit.ly/3orSiko"),
             timestamp = System.currentTimeMillis(),
             metrics = StatusMetrics(
-                retweet = 1200,
-                like = 123,
-                reply = 1100,
+                retweet = 189200,
+                like = 89000,
+                reply = 290300,
             ),
             retweeted = false,
             liked = false,
@@ -114,7 +113,32 @@ data class UiStatus(
             source = "TwidereX",
             isGap = false,
             url = emptyList(),
-            statusKey = MicroBlogKey.Empty,
+            statusKey = MicroBlogKey.CoinHub,
+            rawText = "",
+            platformType = PlatformType.Twitter,
+            sensitive = false
+        )
+
+        @Composable
+        fun sampleBitcoin() = UiStatus(
+            statusId = "",
+            htmlText = autolink.autoLink("A secure and decentralized #Bitcoin and other cryptocurrency wallet for Android phones. Supports #Bitcoin, #Ethereum, #EOS, #Binance Chain, Bitcoin Cash, #DASH. Non-custodial storage, decentralized exchange, and extensive analytics for thousands of tokens and #NFTs \n\n\uD83D\uDC49 Download it here: https://bit.ly/3orSiko"),
+            timestamp = System.currentTimeMillis(),
+            metrics = StatusMetrics(
+                retweet = 199200,
+                like = 89000,
+                reply = 390300,
+            ),
+            retweeted = false,
+            liked = false,
+            geo = UiGeo(""),
+            hasMedia = true,
+            user = UiUser.sampleBitcoin(),
+            media = UiMedia.sampleBitcoin(),
+            source = "TwidereX",
+            isGap = false,
+            url = emptyList(),
+            statusKey = MicroBlogKey.BitcoinWallet,
             rawText = "",
             platformType = PlatformType.Twitter,
             sensitive = false

@@ -178,6 +178,9 @@ fun LazyUiStatusList(
                 contentPadding = contentPadding,
             ) {
                 header.invoke(this)
+                item {
+                    TimelineStatusComponent(data = UiStatus.sample())
+                }
                 itemsIndexed(
                     items,
                     key = key

@@ -84,13 +84,13 @@ fun SettingsScene() {
                     route = Root.Settings.Misc,
                 ),
             ),
-            stringResource(res = com.twidere.twiderex.MR.strings.scene_settings_section_header_about) to listOf(
+            /*stringResource(res = com.twidere.twiderex.MR.strings.scene_settings_section_header_about) to listOf(
                 SettingItem(
                     stringResource(res = com.twidere.twiderex.MR.strings.scene_settings_about_title),
                     painterResource(res = com.twidere.twiderex.MR.files.ic_info_circle),
                     route = Root.Settings.About,
                 ),
-            )
+            )*/
         )
 
     TwidereScene {

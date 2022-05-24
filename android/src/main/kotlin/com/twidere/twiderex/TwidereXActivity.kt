@@ -54,6 +54,8 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.applovin.sdk.AppLovinMediationProvider
+import com.applovin.sdk.AppLovinSdk
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.twidere.twiderex.action.LocalStatusActions
 import com.twidere.twiderex.action.StatusActions
@@ -77,9 +79,13 @@ import com.twidere.twiderex.utils.CustomTabSignInChannel
 import com.twidere.twiderex.utils.LocalPlatformResolver
 import com.twidere.twiderex.utils.PlatformResolver
 import com.twidere.twiderex.utils.asIsActiveNetworkFlow
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import moe.tlaster.kfilepicker.FilePicker
 import moe.tlaster.precompose.lifecycle.PreComposeActivity
 import moe.tlaster.precompose.lifecycle.setContent
@@ -117,6 +123,7 @@ class TwidereXActivity : PreComposeActivity(), KoinComponent {
             .flowWithLifecycle(getLifecycle())
             .onEach { isActiveNetworkMetered.value = it }
             .launchIn(lifecycleScope)
+        //loadSdkApplovin()
         setContent {
             var showSplash by rememberSaveable { mutableStateOf(true) }
             LaunchedEffect(Unit) {
@@ -216,6 +223,21 @@ class TwidereXActivity : PreComposeActivity(), KoinComponent {
         super.onResume()
         lifecycleScope.launchWhenResumed {
             CustomTabSignInChannel.onClose()
+        }
+    }
+
+    private fun loadSdkApplovin() {
+        CoroutineScope(Job() + Dispatchers.Default).launch {
+            val appLovinSdk = AppLovinSdk.getInstance(this@TwidereXActivity).apply {
+                mediationProvider = AppLovinMediationProvider.MAX
+                settings.isLocationCollectionEnabled = false
+            }
+            appLovinSdk.initializeSdk {
+                try {
+                    val userService = appLovinSdk.userService
+                    userService.preloadConsentDialog()
+                } catch (ex: Exception) {}
+            }
         }
     }
 }

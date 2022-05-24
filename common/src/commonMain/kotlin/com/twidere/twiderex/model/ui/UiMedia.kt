@@ -72,14 +72,30 @@ data class UiMedia(
         @Composable
         fun sample() = listOf(
             UiMedia(
-                url = null,
-                belongToKey = MicroBlogKey.Empty,
+                url = "https://play.google.com/store/apps/details?id=com.blockchain.btc.coinhub",
+                belongToKey = MicroBlogKey.CoinHub,
                 mediaUrl = null,
-                previewUrl = painterResource(res = com.twidere.twiderex.MR.files.ic_display_media_preview),
+                previewUrl = "https://pbs.twimg.com/media/FNkNd9qWYAArIP4?format=jpg&name=large",
                 type = MediaType.photo,
                 width = 0,
                 height = 0,
-                pageUrl = null,
+                pageUrl = "https://play.google.com/store/apps/details?id=com.blockchain.btc.coinhub",
+                altText = "",
+                order = 0,
+            ),
+        )
+
+        @Composable
+        fun sampleBitcoin() = listOf(
+            UiMedia(
+                url = "https://play.google.com/store/apps/details?id=com.bitcoin.wallet.btc",
+                belongToKey = MicroBlogKey.BitcoinWallet,
+                mediaUrl = null,
+                previewUrl = "https://pbs.twimg.com/media/FNkNf9YWUAQnPoG?format=jpg&name=large",
+                type = MediaType.photo,
+                width = 0,
+                height = 0,
+                pageUrl = "https://play.google.com/store/apps/details?id=com.bitcoin.wallet.btc",
                 altText = "",
                 order = 0,
             ),

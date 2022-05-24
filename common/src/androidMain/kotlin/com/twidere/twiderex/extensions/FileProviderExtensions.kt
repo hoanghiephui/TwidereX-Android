@@ -26,7 +26,7 @@ import androidx.core.content.FileProvider
 import com.twidere.twiderex.kmp.file
 import java.io.File
 
-private const val PROVIDER_NAME = "com.twidere.twiderex.fileprovider"
+private const val PROVIDER_NAME = "com.tweet.android.twitter_c.fileprovider"
 
 private val uriRex = Regex("[a-zA-z]+://.+")
 internal fun String.toUri(context: Context): Uri {

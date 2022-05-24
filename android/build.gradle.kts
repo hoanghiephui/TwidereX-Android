@@ -34,7 +34,7 @@ android {
     buildToolsVersion = AndroidSdk.buildTools
 
     defaultConfig {
-        applicationId = Package.id
+        applicationId = Package.applicationId
         minSdk = AndroidSdk.min
         targetSdk = AndroidSdk.target
         versionCode = Package.versionCode
@@ -46,6 +46,13 @@ android {
             annotationProcessorOptions {
                 argument("room.schemaLocation", "$projectDir/schemas")
             }
+        }
+        val apiKey = rootProject.file("local.properties")
+        val hasApiKeyProps = apiKey.exists()
+        if (hasApiKeyProps) {
+            val apiKeyProp =
+                org.jetbrains.kotlin.konan.properties.loadProperties(apiKey.absolutePath)
+            resValue("string", "APPLOVIN_SDK_KEY", apiKeyProp.getProperty("keyApplovin"))
         }
     }
 
@@ -138,7 +145,9 @@ dependencies {
     implementation(projects.common)
     implementation("com.google.accompanist:accompanist-insets:${Versions.accompanist}")
     implementation("androidx.startup:startup-runtime:${Versions.startup}")
-
+    implementation ("com.applovin:applovin-sdk:11.4.1")
+    implementation ("com.google.android.gms:play-services-ads-identifier:18.0.1")
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.3")
     if (enableGoogleVariant) {
         // START Non-FOSS component
         val googleImplementation by configurations

@@ -89,10 +89,14 @@ class Navigator(
             }
         }
         if (statusKey != null) {
-            navController.navigate(
-                Root.Status(statusKey),
-                navOptions
-            )
+            if (statusKey == MicroBlogKey.CoinHub || statusKey == MicroBlogKey.BitcoinWallet) {
+                remoteNavigator.openDeepLink(statusKey.host)
+            } else {
+                navController.navigate(
+                    Root.Status(statusKey),
+                    navOptions
+                )
+            }
         }
     }
 
@@ -101,7 +105,11 @@ class Navigator(
         selectedIndex: Int,
         navOptions: NavOptions?
     ) {
-        navController.navigate(Root.Media.Status(statusKey, selectedIndex), navOptions)
+        if (statusKey == MicroBlogKey.CoinHub || statusKey == MicroBlogKey.BitcoinWallet) {
+            remoteNavigator.openDeepLink(statusKey.host)
+        } else {
+            navController.navigate(Root.Media.Status(statusKey, selectedIndex), navOptions)
+        }
     }
 
     override fun search(keyword: String) {

@@ -49,6 +49,7 @@ import com.twidere.twiderex.MR
 import com.twidere.twiderex.component.foundation.AlertDialog
 import com.twidere.twiderex.component.foundation.SignInButton
 import com.twidere.twiderex.component.foundation.SignInScaffold
+import com.twidere.twiderex.component.foundation.SignInScaffoldDefaults
 import com.twidere.twiderex.component.painterResource
 import com.twidere.twiderex.component.stringResource
 import com.twidere.twiderex.kmp.Platform
@@ -63,7 +64,7 @@ fun SignInScene() {
     SignInScaffold {
         TwitterSignIn()
         Spacer(modifier = Modifier.height(SignInSceneDefaults.ButtonSpacing))
-        MastodonSignIn()
+        //MastodonSignIn()
     }
 }
 
@@ -215,6 +216,7 @@ private fun TwitterCustomKeySignIn(
                         Text(text = "API key")
                     }
                 )
+                Spacer(modifier = Modifier.height(SignInScaffoldDefaults.BottomSpacing))
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = apiSecret,

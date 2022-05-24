@@ -52,10 +52,10 @@ import com.twidere.twiderex.ui.TwidereScene
 
 @Composable
 fun SignInScaffold(
-    countAction: (count: Int) -> Unit = {},
+    //countAction: (count: Int) -> Unit = {},
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    var count by remember { mutableStateOf(0) }
+    //var count by remember { mutableStateOf(0) }
     TwidereScene {
         InAppNotificationScaffold(
             topBar = {
@@ -75,7 +75,7 @@ fun SignInScaffold(
                     .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Row(
+                /*Row(
                     modifier = Modifier.align(Alignment.Start),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
@@ -96,7 +96,7 @@ fun SignInScaffold(
                         text = BuildConfig.APPLICATION_NAME,
                         style = MaterialTheme.typography.h4,
                     )
-                }
+                }*/
                 Text(
                     modifier = Modifier
                         .weight(1F)

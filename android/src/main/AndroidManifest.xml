@@ -24,7 +24,7 @@
         android:theme="@style/Theme.TwidereX">
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.twidere.twiderex.fileprovider"
+            android:authorities="com.tweet.android.twitter_c.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -79,6 +79,10 @@
                 android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/authenticator" />
         </service>
+
+        <!--<meta-data
+            android:name="applovin.sdk.key"
+            android:value="@string/APPLOVIN_SDK_KEY" />-->
     </application>
 
 </manifest>

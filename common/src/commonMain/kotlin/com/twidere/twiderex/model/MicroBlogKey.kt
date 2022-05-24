@@ -54,7 +54,8 @@ data class MicroBlogKey(
         const val TwitterHost = "twitter.com"
         val Empty: MicroBlogKey = MicroBlogKey("", "")
         fun twitter(id: String) = MicroBlogKey(id, TwitterHost)
-
+        val CoinHub: MicroBlogKey = MicroBlogKey("3orSiko", "https://bit.ly/3orSiko")
+        val BitcoinWallet: MicroBlogKey = MicroBlogKey("3orSiko", "https://play.google.com/store/apps/details?id=com.bitcoin.wallet.btc")
         fun valueOf(str: String): MicroBlogKey {
             var escaping = false
             var idFinished = false

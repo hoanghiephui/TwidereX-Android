@@ -11,7 +11,7 @@
         tools:targetApi="n_mr1">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetPackage="com.twidere.twiderex"
+            android:targetPackage="com.tweet.android.twitter_c"
             android:targetClass="com.twidere.twiderex.TwidereXActivity"
             android:data="twiderex://RootDeepLinks/Compose"/>
         <categories android:name="android.shortcut.conversation" />

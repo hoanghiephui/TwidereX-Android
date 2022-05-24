@@ -8,12 +8,12 @@ object Versions {
     }
 
     object Java {
-        const val jvmTarget = "17"
-        val java = JavaVersion.VERSION_17
+        const val jvmTarget = "11"
+        val java = JavaVersion.VERSION_11
     }
 
     const val ksp = "${Kotlin.lang}-1.0.4"
-    const val agp = "7.2.0-rc01"
+    const val agp = "7.2.0"
     const val spotless = "6.4.2"
     const val ktlint = "0.45.2"
     const val okhttp = "4.9.1"

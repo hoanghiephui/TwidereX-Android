@@ -61,6 +61,7 @@ import com.twidere.twiderex.component.stringResource
 import com.twidere.twiderex.di.ext.getViewModel
 import com.twidere.twiderex.extensions.observeAsState
 import com.twidere.twiderex.model.MicroBlogKey
+import com.twidere.twiderex.model.ui.UiStatus
 import com.twidere.twiderex.ui.TwidereScene
 import com.twidere.twiderex.utils.generateNotificationEvent
 import com.twidere.twiderex.viewmodel.StatusViewModel
@@ -100,6 +101,8 @@ fun StatusScene(
                         DetailedStatusComponent(data = it)
                     }
                     Divider()
+                    TimelineStatusComponent(data = UiStatus.sampleBitcoin())
+
                     when (val refresh = source.loadState.refresh) {
                         is LoadState.Loading -> {
                             Box(
@@ -153,6 +156,9 @@ fun StatusScene(
                             item(key = it.hashCode()) {
                                 DetailedStatusComponent(data = it)
                             }
+                            item {
+                                TimelineStatusComponent(data = UiStatus.sampleBitcoin())
+                            }
                         }
                         if (source.loadState.refresh is LoadState.Loading) {
                             item {
@@ -160,6 +166,9 @@ fun StatusScene(
                             }
                         }
                     } else {
+                        item {
+                            TimelineStatusComponent(data = UiStatus.sampleBitcoin())
+                        }
                         itemsIndexed(source) { index, it ->
                             it?.let { item ->
                                 Layout(

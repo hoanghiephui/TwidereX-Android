@@ -64,9 +64,9 @@ data class UiUser(
         @Composable
         fun sample() = UiUser(
             id = "",
-            name = "Twidere",
-            screenName = "TwidereProject",
-            profileImage = "", // painterResource(res = com.twidere.twiderex.MR.files.ic_profile_image_twidere),
+            name = "Bitcoin Wallet: NFT Market",
+            screenName = "Bitcoin",
+            profileImage = "https://play-lh.googleusercontent.com/rXqo1MqW_4Tf8-7WIkp6XuGRBZKD2WSspzezBpbg6o9tRn8XCEAOwLfTBhytQl0cAOl1=s360", // painterResource(res = com.twidere.twiderex.MR.files.ic_profile_image_twidere),
             profileBackgroundImage = null,
             metrics = UserMetrics(
                 fans = 0,
@@ -82,7 +82,31 @@ data class UiUser(
             protected = false,
             userKey = MicroBlogKey.Empty,
             platformType = PlatformType.Twitter,
-            acct = MicroBlogKey.twitter("TwidereProject")
+            acct = MicroBlogKey.twitter("TwitterProject")
+        )
+
+        @Composable
+        fun sampleBitcoin() = UiUser(
+            id = "",
+            name = "Bitcoin Wallet: Blockchain NFT",
+            screenName = "BitcoinWallet",
+            profileImage = "https://play-lh.googleusercontent.com/p_Y1r5qB0_yGy4oekvlSBrfUvfsC6xSwyP4RYIL7GUu_EtkiVWTYKEmTEk8LAba6lA=s360", // painterResource(res = com.twidere.twiderex.MR.files.ic_profile_image_twidere),
+            profileBackgroundImage = null,
+            metrics = UserMetrics(
+                fans = 0,
+                follow = 0,
+                status = 0,
+                listed = 0
+            ),
+            rawDesc = "",
+            htmlDesc = "",
+            website = null,
+            location = null,
+            verified = false,
+            protected = false,
+            userKey = MicroBlogKey.Empty,
+            platformType = PlatformType.Twitter,
+            acct = MicroBlogKey.twitter("TwitterProject")
         )
     }
 }

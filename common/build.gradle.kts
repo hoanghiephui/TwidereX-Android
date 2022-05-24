@@ -65,6 +65,9 @@ kotlin {
                 implementation("ca.gosyer:accompanist-pager:${Versions.accompanist_jb}")
                 implementation("ca.gosyer:accompanist-pager-indicators:${Versions.accompanist_jb}")
                 api("com.github.Tlaster.KFilePicker:KFilePicker:${Versions.kFilePicker}")
+                api("androidx.compose.ui:ui-tooling:1.1.1")
+                //implementation("com.applovin:applovin-sdk:11.4.1")
+                //implementation(projects.ads)
             }
         }
         val commonTest by getting {
@@ -79,7 +82,7 @@ kotlin {
             dependencies {
                 implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}")
                 implementation("androidx.savedstate:savedstate-ktx:1.1.0")
-                implementation("androidx.core:core-ktx:1.8.0-alpha02")
+                implementation("androidx.core:core-ktx:1.9.0-alpha03")
                 implementation("io.insert-koin:koin-android:${Versions.koin}")
                 implementation("io.insert-koin:koin-androidx-workmanager:${Versions.koin}")
                 implementation("androidx.work:work-runtime-ktx:${Versions.work}")
@@ -99,9 +102,12 @@ kotlin {
                 implementation("androidx.startup:startup-runtime:${Versions.startup}")
                 implementation("com.google.accompanist:accompanist-insets:${Versions.accompanist}")
                 implementation("androidx.browser:browser:${Versions.browser}")
-                implementation("androidx.vectordrawable:vectordrawable:1.2.0-alpha02")
+                implementation("androidx.vectordrawable:vectordrawable:1.2.0-beta01")
                 implementation("androidx.activity:activity-compose:${Versions.activity}")
                 implementation("com.github.android:renderscript-intrinsics-replacement-toolkit:b6363490c3")
+                implementation("androidx.compose.ui:ui-tooling:1.1.1")
+                //api("com.applovin:applovin-sdk:11.4.1")
+                //implementation(projects.ads)
             }
         }
         val androidAndroidTest by getting {
@@ -138,7 +144,7 @@ buildkonfig {
     objectName = "BuildConfig"
     defaultConfigs {
         buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "VERSION_NAME", Package.versionName)
-        buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "APPLICATION_ID", Package.id)
+        buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "APPLICATION_ID", Package.applicationId)
         buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "APPLICATION_NAME", Package.name)
         val apiKeyProperties = rootProject.file("apiKey.properties")
         val hasApiKeyProps = apiKeyProperties.exists()
